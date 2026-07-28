@@ -4,26 +4,43 @@ import { navigation } from "@/data/navigation";
 import { personal } from "@/data/personal";
 import { cn } from "@/lib/utils";
 import { Download, Menu, X } from "lucide-react";
-import { AnimatePresence, motion, useScroll, useMotionValueEvent } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+  useScroll,
+  useMotionValueEvent,
+} from "framer-motion";
 import Link from "next/link";
-import { useState } from "react";
+import { useCallback, useRef, useState } from "react";
 import { Button } from "./Button";
 import { BrandMark } from "./BrandMark";
+import { scrollToSection, useLenis } from "./SmoothScroll";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
+  const navigating = useRef(false);
+  const lenis = useLenis();
   const { scrollY } = useScroll();
 
   useMotionValueEvent(scrollY, "change", (v) => {
     setScrolled(v > 40);
   });
 
-  const scrollTo = (href: string) => {
-    setOpen(false);
-    const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
-  };
+  const handleNavClick = useCallback(
+    (href: string) => {
+      if (navigating.current) return;
+      navigating.current = true;
+
+      setOpen(false);
+      scrollToSection(href, lenis);
+
+      window.setTimeout(() => {
+        navigating.current = false;
+      }, 800);
+    },
+    [lenis]
+  );
 
   return (
     <motion.header
@@ -41,7 +58,7 @@ export function Navbar() {
           href="#home"
           onClick={(e) => {
             e.preventDefault();
-            scrollTo("#home");
+            handleNavClick("#home");
           }}
           className="group"
           data-cursor="button"
@@ -56,7 +73,7 @@ export function Navbar() {
               href={item.href}
               onClick={(e) => {
                 e.preventDefault();
-                scrollTo(item.href);
+                handleNavClick(item.href);
               }}
               className="rounded-full px-3 py-1.5 text-sm text-muted transition-colors hover:text-white"
               data-cursor="button"
@@ -76,9 +93,11 @@ export function Navbar() {
         </div>
 
         <button
+          type="button"
           className="rounded-lg border border-white/10 p-2 text-white lg:hidden"
           onClick={() => setOpen((v) => !v)}
           aria-label="Toggle menu"
+          aria-expanded={open}
           data-cursor="button"
         >
           {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
@@ -91,24 +110,22 @@ export function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.2 }}
             className="border-t border-white/5 bg-[#050505]/95 backdrop-blur-xl lg:hidden"
           >
             <div className="section-pad flex flex-col gap-1 py-4">
               {navigation.map((item) => (
-                <a
+                <button
                   key={item.href}
-                  href={item.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    scrollTo(item.href);
-                  }}
-                  className="rounded-lg px-3 py-2.5 text-sm text-muted hover:bg-white/5 hover:text-white"
+                  type="button"
+                  onClick={() => handleNavClick(item.href)}
+                  className="w-full rounded-lg px-3 py-2.5 text-left text-sm text-muted transition-colors hover:bg-white/5 hover:text-white active:bg-white/10"
                 >
                   {item.label}
-                </a>
+                </button>
               ))}
               <div className="mt-3">
-                <a href={personal.resumePath} download>
+                <a href={personal.resumePath} download onClick={() => setOpen(false)}>
                   <Button variant="outline" size="sm" className="w-full">
                     Download Resume
                   </Button>
