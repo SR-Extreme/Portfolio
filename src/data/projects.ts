@@ -1,0 +1,76 @@
+import type { Project } from "@/types";
+
+export const projects: Project[] = [
+  {
+    id: "omniprep",
+    title: "OmniPrep",
+    description: "AI Integrated Interview Platform",
+    longDescription:
+      "End-to-end interview preparation platform covering DSA, system design, and behavioral practice — with timed mock interviews, AI evaluation, detailed reports, and adaptive study plans.",
+    image: "/images/omniprep.png",
+    features: [
+      "4 Modules",
+      "150+ Questions",
+      "AI Evaluation",
+      "Mock Interviews",
+      "Adaptive Study Plans",
+      "Role-Based Admin Dashboard",
+      "Live Code Execution",
+    ],
+    techStack: [
+      "Next.js",
+      "Express",
+      "PostgreSQL",
+      "Prisma",
+      "Redis",
+      "BullMQ",
+      "Judge0",
+      "Gemini AI",
+      "Socket.IO",
+      "Stripe",
+      "Cloudinary",
+      "Monaco Editor",
+    ],
+    liveUrl: "https://omniprep.roysaurav.me",
+    githubUrl: "https://github.com/SR-Extreme/OmniPrep",
+    stats: [
+      { label: "Modules", value: "4" },
+      { label: "Questions", value: "150+" },
+      { label: "APIs", value: "50+" },
+    ],
+  },
+  {
+    id: "craveit",
+    title: "CraveIt",
+    description: "Full-Stack Food Delivery Platform",
+    longDescription:
+      "A scalable multi-tenant food delivery platform built with the MERN stack, featuring role-based access for users, admins, and delivery partners with real-time order tracking and secure payments.",
+    image: "/images/omniprep.png",
+    features: [
+      "Multi-Tenant Architecture",
+      "2FA OTP Authentication",
+      "Stripe Payments",
+      "Real-Time Order Tracking",
+      "Live Map Integration",
+      "35+ REST API Endpoints",
+      "Role-Based Access Control",
+    ],
+    techStack: [
+      "MongoDB",
+      "Express.js",
+      "React.js",
+      "Node.js",
+      "Socket.IO",
+      "Stripe",
+      "Nodemailer",
+      "JWT",
+    ],
+    liveUrl: "#",
+    githubUrl: "https://github.com/SR-Extreme/CraveIt",
+    stats: [
+      { label: "Modules", value: "3" },
+      { label: "Roles", value: "3" },
+      { label: "APIs", value: "35+" },
+    ],
+  },
+];
