@@ -5,9 +5,9 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { ExternalLink, Flame, Trophy } from "lucide-react";
 import { SiLeetcode, SiGeeksforgeeks } from "react-icons/si";
-import Image from "next/image";
 import { SectionHeading } from "./SectionHeading";
 import { AnimatedCounter } from "./AnimatedCounter";
+import { SocialIcon } from "./SocialIcon";
 
 interface LeetCodeData {
   totalSolved: number;
@@ -245,13 +245,11 @@ export function CodingProfiles() {
                 data-cursor="button"
               >
                 <div className="flex items-center gap-3">
-                  <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10">
-                    <Image
-                      src="/images/codolio.svg"
-                      alt="Codeolio"
-                      width={20}
-                      height={20}
-                      className="h-5 w-5 brightness-0 invert"
+                  <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                    <SocialIcon
+                      name="Codeolio"
+                      icon="codeolio"
+                      className="h-5 w-5"
                     />
                   </span>
                   <div>

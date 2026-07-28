@@ -23,7 +23,7 @@ export function SocialIcon({ name, icon, className = "h-4 w-4" }: SocialIconProp
         alt={name}
         width={16}
         height={16}
-        className={`${className} brightness-0 invert`}
+        className={`${className} object-contain brightness-0 invert opacity-80 transition-opacity group-hover:opacity-100`}
       />
     );
   }

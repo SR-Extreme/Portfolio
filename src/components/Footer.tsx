@@ -41,7 +41,7 @@ export function Footer() {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={link.name}
-                className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 text-muted transition-colors hover:border-primary/40 hover:text-primary"
+                className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 text-muted transition-colors hover:border-primary/40 hover:text-primary group"
                 data-cursor="button"
               >
                 <SocialIcon name={link.name} icon={link.icon} className="h-4 w-4" />
