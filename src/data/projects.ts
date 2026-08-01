@@ -45,7 +45,7 @@ export const projects: Project[] = [
     description: "Full-Stack Food Delivery Platform",
     longDescription:
       "A scalable multi-tenant food delivery platform built with the MERN stack, featuring role-based access for users, admins, and delivery partners with real-time order tracking and secure payments.",
-    image: "/images/omniprep.png",
+    image: "/images/CraveItHero.png",
     features: [
       "Multi-Tenant Architecture",
       "2FA OTP Authentication",
@@ -65,7 +65,7 @@ export const projects: Project[] = [
       "Nodemailer",
       "JWT",
     ],
-    liveUrl: "#",
+    liveUrl: "https://craveit.roysaurav.me",
     githubUrl: "https://github.com/SR-Extreme/CraveIt",
     stats: [
       { label: "Modules", value: "3" },
